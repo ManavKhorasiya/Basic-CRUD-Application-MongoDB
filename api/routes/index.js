@@ -10,4 +10,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/test', user.test);
 
+router.post('/create_user' ,user.create_user ,function(req,res,next) {
+
+});
+
 module.exports = router;

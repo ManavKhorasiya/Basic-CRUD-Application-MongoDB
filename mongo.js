@@ -32,6 +32,24 @@ class Ntdatabase {
             });
         })
     }
+
+    insertIntoCollection = (model_name) => {
+        return new Promise((resolve,reject) => {
+            if(typeof model_name == 'object') {
+                model_name.save((e, result) => {
+                    if(!e) {
+                        resolve(result);
+                    }
+                    else {
+                        reject(e);
+                    }
+                });
+            } else {
+                reject({status : 104, message : "Invalid insert"});
+            } 
+        })
+    }
+    
 }
 
 let database = new Ntdatabase();
