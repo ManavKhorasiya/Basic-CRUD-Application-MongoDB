@@ -52,7 +52,23 @@ let read_user = async function(req,res,next) {
     } catch(error) {
         return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
     }
+}
 
+let read_all_users = async function(req,res,next) {
+    try {
+        let users = await mongo.findFromCollection(User);
+        console.log(users);
+        let temp_arr = [];
+        for(var i=0;i<users.length;i++) {
+            temp_arr.push(users[i]);
+        }
+        console.log(temp_arr);
+        let user = {};
+        user.user = temp_arr;
+        return res.send({statusCode : 0, statusMessage : "User read success" , data : user});
+    } catch(error) {
+        return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
+    }
 }
 
 let delete_user = async function(req,res,next) {
@@ -116,5 +132,6 @@ module.exports = {
     create_user : create_user,
     update_user : update_user,
     read_user : read_user,
+    read_all_users : read_all_users,
     delete_user : delete_user
 }
