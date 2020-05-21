@@ -1,5 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 class Ntdatabase {
     constructor() {
@@ -49,7 +50,23 @@ class Ntdatabase {
             } 
         })
     }
-    
+
+    updateCollection = (model_name, update_condition_obj, new_values) => {
+        return new Promise((resolve,reject) => {
+                if(typeof update_condition_obj !='string' && typeof new_values !='string') {
+                model_name.findOneAndUpdate(update_condition_obj, new_values, (e,result) => {
+                    if(!e) {
+                        resolve(result);
+                    } else {
+                        reject(e);
+                    }
+                });
+            } else {
+                reject({status : 104, message : "Invalid parameters for update"});
+            }
+        })
+    }
+
 }
 
 let database = new Ntdatabase();

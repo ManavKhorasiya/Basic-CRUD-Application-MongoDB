@@ -28,13 +28,36 @@ let create_user = async function(req,res,next) {
                 let userData = await User.find({"email" : alldata.email});
                 user.user = userData[0];
                 return res.send({statusCode : 0 , statusMessage : "User inserted successfully" , data : user});
+            } else {
+                return res.send({statusCode : 1 , statusMessage : "User already exist for this email" , data : {}});
             }
-        }
-        else {
-            return res.send({statusCode : 1 , statusMessage : "User already exist for this email" , data : {}});
         }
     } catch(error) {
         return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
+    }
+}
+
+let update_user = async function(req,res,next) {
+    let body = req.body;
+    let update_obj = {};
+    update_obj.email = body.email;
+    try {
+        let is_user_exist = await User.find({"email" : body.email});
+        if(is_user_exist.length !== 0) {
+            await mongo.updateCollection(User,update_obj, body);
+            let user = {};
+            var userData = await User.find({"email" : body.email});
+            delete userData[0].password;
+            console.log(userData[0]);
+            user.user = userData[0];
+            return res.send({statusCode : 0 , statusMessage : "User updated successfully" , data : user});
+        } else {
+            console.log('inside else');
+            return res.send({statusCode : 1, statusMessage : "No user exist for given email" , data : {}})
+        }
+    } catch(error) {
+        console.log(error);
+        return res.send({statusCode : 1,statusMessage : "Invalid info" , data : error});
     }
 }
 
@@ -55,5 +78,6 @@ function verifyUserData(fields_tobe_verified,user_data_obj) {
 
 module.exports = {
     test : test,
-    create_user : create_user
+    create_user : create_user,
+    update_user : update_user
 }

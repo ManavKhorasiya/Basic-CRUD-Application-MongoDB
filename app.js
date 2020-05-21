@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const port = process.env.PORT || '3000';
+const port = '3000';
 app.set('port',port);
 
 const server = http.createServer(app);
@@ -53,5 +53,14 @@ const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Listening on port ${port}!`);
 })
+
+process.on('exit', function() {
+  console.log('exitting');
+})
+
+// process.on('uncaughtException', function(err) {
+//   console.error('An uncaught error occured!');
+//   console.error(err.stack);
+// })
 
 module.exports = app;

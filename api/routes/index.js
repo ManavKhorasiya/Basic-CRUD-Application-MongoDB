@@ -14,4 +14,8 @@ router.post('/create_user' ,user.create_user ,function(req,res,next) {
 
 });
 
+router.post('/update_user', user.update_user, function(req,res,next) {
+
+});
+
 module.exports = router;
