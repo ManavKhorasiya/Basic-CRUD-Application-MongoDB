@@ -67,6 +67,38 @@ class Ntdatabase {
         })
     }
 
+    findFromCollection = (model_name, query_obj = {}) => {
+        return new Promise((resolve,reject) => {
+            if(model_name!=undefined && model_name!='') {
+                model_name.find(query_obj, function(e,result) {
+                    if(!e) {
+                        resolve(result);
+                    } else {
+                        reject(e);
+                    }
+                });
+            } else {
+                reject({status : 104, message : "Invalid search"});
+            }
+        });
+    }
+
+    deleteFromCollection = (model_name, query_obj) => {
+        return new Promise((resolve,reject) => {
+            if(model_name!=undefined && model_name!='') {
+                model_name.remove(query_obj, function(e,result) {
+                    if(!e) {
+                        resolve(result);
+                    } else {
+                        reject(e);
+                    }
+                });
+            } else {
+                reject({status : 104, message : "Invalid search"});
+            }
+        });
+    }
+
 }
 
 let database = new Ntdatabase();

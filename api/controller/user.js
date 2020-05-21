@@ -37,6 +37,42 @@ let create_user = async function(req,res,next) {
     }
 }
 
+let read_user = async function(req,res,next) {
+    let body = req.body;
+    try {
+        let userData = await mongo.findFromCollection(User,body);
+        if(userData.length !=0 ) {
+            let user = {};
+            user.user = userData[0];
+            user.user.password = '';
+            return res.send({statusCode : 0, statusMessage : "User read success" , data : user});
+        } else {
+            return res.send({statusCode : 1 , statusMessage : "User doesn't exist" , data : {}});
+        }
+    } catch(error) {
+        return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
+    }
+
+}
+
+let delete_user = async function(req,res,next) {
+    let body = req.body;
+    try {
+        let userData = await mongo.findFromCollection(User,body);
+        if(userData.length !=0) {
+            let user = {};
+            user.user = userData[0];
+            user.user.password = '';
+            await mongo.deleteFromCollection(User,body);
+            return res.send({statusCode : 0, statusMessage : "Deleted user" , data : user});
+        } else {
+            return res.send({statusCode : 1 , statusMessage : "User doesn't exist" , data : {}});
+        }
+    } catch(error) {
+        return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
+    }
+}
+
 let update_user = async function(req,res,next) {
     let body = req.body;
     let update_obj = {};
@@ -47,9 +83,8 @@ let update_user = async function(req,res,next) {
             await mongo.updateCollection(User,update_obj, body);
             let user = {};
             var userData = await User.find({"email" : body.email});
-            delete userData[0].password;
-            console.log(userData[0]);
             user.user = userData[0];
+            user.user.password = '';
             return res.send({statusCode : 0 , statusMessage : "User updated successfully" , data : user});
         } else {
             console.log('inside else');
@@ -79,5 +114,7 @@ function verifyUserData(fields_tobe_verified,user_data_obj) {
 module.exports = {
     test : test,
     create_user : create_user,
-    update_user : update_user
+    update_user : update_user,
+    read_user : read_user,
+    delete_user : delete_user
 }

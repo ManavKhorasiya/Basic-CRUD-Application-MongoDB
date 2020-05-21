@@ -18,7 +18,8 @@ const user = new mongoose.Schema( {
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        configurable : true
     },
     dateOfBirth: {
         type: Date

@@ -18,4 +18,12 @@ router.post('/update_user', user.update_user, function(req,res,next) {
 
 });
 
+router.post('/read_user', user.read_user, function(req,res,next) {
+
+});
+
+router.post('/delete_user', user.delete_user, function(req,res,next) {
+
+});
+
 module.exports = router;
