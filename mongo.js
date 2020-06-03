@@ -1,12 +1,13 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+require('dotenv').config();
 mongoose.set('useFindAndModify', false);
 
 class Ntdatabase {
     constructor() {
         this.apiStartTime = new Date().getTime();
         this.db_con, this.timer;
-        this.db_url = process.env.DATABASE_URI || "mongodb://localhost:27017/";
+        this.db_url = process.env.DATABASE_URI || "mongodb://mongo:27017/";
         this.database_name = process.env.DATABASE_NAME || "CRUD_basic";
         setImmediate(async () => {
             this.db_con = await this._createConnection();

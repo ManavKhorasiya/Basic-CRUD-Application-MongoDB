@@ -57,12 +57,12 @@ let read_user = async function(req,res,next) {
 let read_all_users = async function(req,res,next) {
     try {
         let users = await mongo.findFromCollection(User);
-        console.log(users);
+        // console.log(users);
         let temp_arr = [];
         for(var i=0;i<users.length;i++) {
             temp_arr.push(users[i]);
         }
-        console.log(temp_arr);
+        // console.log(temp_arr);
         let user = {};
         user.user = temp_arr;
         return res.send({statusCode : 0, statusMessage : "User read success" , data : user});

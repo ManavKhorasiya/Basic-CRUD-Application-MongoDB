@@ -1,0 +1,12 @@
+version: "2"
+services: 
+    web:
+        build: .
+        ports: 
+            - "8080:3000"               #Container's port 8080 mapped to machine's port 3000
+        depends_on: 
+            - mongo
+    mongo:
+        image: mongo
+        ports:
+            - "27018:27017"

@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const port = '3000';
+let port = process.env.PORT || 3000;
 app.set('port',port);
 
 const server = http.createServer(app);
