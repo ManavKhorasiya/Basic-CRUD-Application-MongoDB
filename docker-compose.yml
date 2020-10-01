@@ -5,8 +5,11 @@ services:
         ports: 
             - "8080:3000"               #Container's port 8080 mapped to machine's port 3000
         depends_on: 
-            - mongo
-    mongo:
+            - database
+    database:
         image: mongo
+        environment : 
+            MONGO_INITDB_ROOT_USERNAME : root
+            MONGO_INITDB_ROOT_PASSWORD : 1010
         ports:
-            - "27018:27017"
+            - "27017:27017"
