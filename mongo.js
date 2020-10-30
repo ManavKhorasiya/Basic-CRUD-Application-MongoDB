@@ -7,7 +7,7 @@ class Ntdatabase {
     constructor() {
         this.apiStartTime = new Date().getTime();
         this.db_con, this.timer;
-        this.db_url = process.env.DATABASE_URI || "mongodb://mongo:27017/";              //When using with Docker, use 2nd path
+        this.db_url = process.env.DATABASE_URI || "mongodb://mongo:27017/";              //When using with Docker, use "mongodb://mongo:27017/" else use "mongodb://localhost:27017/" 
         this.database_name = process.env.DATABASE_NAME || "CRUD_basic";
         setImmediate(async () => {
             this.db_con = await this._createConnection();
