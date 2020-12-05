@@ -1,5 +1,5 @@
 #Use official image as base parent image
-FROM node:carbon
+FROM node:12
 
 #Set up working directory
 RUN mkdir -p /usr/src/app
