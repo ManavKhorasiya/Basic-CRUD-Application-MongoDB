@@ -45,7 +45,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-let port = process.env.PORT || 3000;
+app.get('/test', function(req,res,next) {
+  res.send({statusMessage : "working"});
+});
+
+let port = process.env.PORT;
 app.set('port',port);
 
 const server = http.createServer(app);
