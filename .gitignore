@@ -1,6 +1,9 @@
 #Dependency directories
 node_modules/
 
+#Docker container running MongoDB
+mongo-volume/
+
 #optional npm cache directory
 .npm
 

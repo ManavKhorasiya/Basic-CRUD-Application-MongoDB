@@ -22,11 +22,16 @@ class Ntdatabase {
         return false;
     }
 
+    retry_connection = () => {
+        return mongoose.connect(this.db_url + this.database_name, {useNewUrlParser : true, useUnifiedTopology : true});
+    }
+
     _createConnection = () => {
         return new Promise((resolve,reject) => {
             mongoose.connect(this.db_url + this.database_name, {useNewUrlParser : true, useUnifiedTopology : true}, function(e,db) {
                 if(e) {
                     console.log(`error while creating connection : ${e}`);
+                    // setTimeout(this._createConnection(), 5000);
                 } else {
                     console.log(`connected successfully`);
                     resolve();
