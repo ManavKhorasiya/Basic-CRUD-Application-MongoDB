@@ -1,5 +1,5 @@
 #Use official image as base parent image
-FROM node:12
+FROM node:14
 
 #Set up working directory
 RUN mkdir -p /usr/src/app

@@ -33,6 +33,8 @@ class Ntdatabase {
                     console.log(`error while creating connection : ${e}`);
                     // setTimeout(this._createConnection(), 5000);
                 } else {
+                    let url = db.host + ':' + db.port + '/' + db.name;
+                    console.log(url);
                     console.log(`connected successfully`);
                     resolve();
                 }

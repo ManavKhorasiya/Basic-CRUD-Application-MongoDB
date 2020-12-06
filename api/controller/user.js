@@ -65,7 +65,7 @@ let read_all_users = async function(req,res,next) {
         // console.log(temp_arr);
         let user = {};
         user.user = temp_arr;
-        return res.send({statusCode : 0, statusMessage : "User read success" , data : user});
+        return res.send({API : "READ_USERS_API", statusCode : 0, statusMessage : "User read success" , data : user});
     } catch(error) {
         return res.send({statusCode : 1 , statusMessage : "Invalid user info" , data : error});
     }

@@ -42,4 +42,13 @@ So the connection strings are :
  * `$HOST:5000` (currently `localhost:5000`)
  * `mongodb://database:27017/` (Here `databse` is name of <b>container</b> running MongoDB)
 
+#### Connect to MongoDB Compass
 
+Connection String : `mongodb://localhost:27019/?readPreference=primary&appname=MongoDB%20Compass&ssl=false`
+
+Here, `27019` is the port on which <b>Mongo container</b> is running
+
+
+## Useful Commands
+
+* Remove composed mongo container(container name : <b>database</b>) : `docker-compose rm database`

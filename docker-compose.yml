@@ -16,10 +16,12 @@ services:
     database:
         image: 'mongo'
         environment : 
-            - MONGO_INITDB_DATABASE="CRUD_basic"
-            - MONGO_INITDB_ROOT_USERNAME=manav
-            - MONGO_INITDB_ROOT_PASSWORD=1010
-            # - DATABASE_URI=mongodb://localhost:27017/
+            - MONGO_INITDB_DATABASE="CRUD_basic"                                      #These 3 will give Unauthorized MongoError
+            # - MONGO_INITDB_ROOT_USERNAME=root                         
+            # - MONGO_INITDB_ROOT_PASSWORD=1010
+            # - MONGODB_DATABASE="CRUD_basic"
+            - MONGODB_ROOT_USERNAME=root
+            - MONGODB_ROOT_PASSWORD=1010
         volumes:  
             - ./mongo-volume:/data/db
         ports:
