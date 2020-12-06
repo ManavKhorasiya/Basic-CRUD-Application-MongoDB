@@ -7,7 +7,7 @@ services:
             - /usr/src/app/node_modules
         environment:  
             - PORT=8080
-            - DATABASE_URI=mongodb://mongo:27017/
+            - DATABASE_URI=mongodb://localhost:27017/
             - DATABASE_NAME=CRUD_basic
         ports: 
             - "5000:8080"               #Container's port 5000 mapped to machine's port 8080
@@ -19,7 +19,8 @@ services:
             - MONGO_INITDB_DATABASE="CRUD_basic"
             - MONGO_INITDB_ROOT_USERNAME=manav
             - MONGO_INITDB_ROOT_PASSWORD=1010
+            # - DATABASE_URI=mongodb://localhost:27017/
         volumes:  
             - ./mongo-volume:/data/db
         ports:
-            - '27019:27017'
+            - '27017:27017'

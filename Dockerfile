@@ -19,7 +19,7 @@ RUN npm install
 COPY . .
 
 #Inform docker that container is listening at specified port at runtime
-EXPOSE 8000
+EXPOSE 8080
 
 #Run specified command within container
 CMD [ "npm", "start" ]
