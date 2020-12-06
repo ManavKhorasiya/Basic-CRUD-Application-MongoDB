@@ -2,14 +2,24 @@ version: "2"
 services: 
     web:
         build: .
+        volumes:  
+            - .:/usr/src/app/
+            - /usr/src/app/node_modules
+        environment:  
+            - PORT=8080
+            - DATABASE_URI=mongodb://mongo:27017/
+            - DATABASE_NAME=CRUD_basic
         ports: 
-            - "8080:3000"               #Container's port 8080 mapped to machine's port 3000
+            - "5000:8080"               #Container's port 5000 mapped to machine's port 8080
         depends_on: 
             - database
     database:
-        image: mongo
+        image: 'mongo'
         environment : 
-            MONGO_INITDB_ROOT_USERNAME : root
-            MONGO_INITDB_ROOT_PASSWORD : 1010
+            - MONGO_INITDB_DATABASE="CRUD_basic"
+            - MONGO_INITDB_ROOT_USERNAME=manav
+            - MONGO_INITDB_ROOT_PASSWORD=1010
+        volumes:  
+            - ./mongo-volume:/data/db
         ports:
-            - "27017:27017"
+            - '27019:27017'
