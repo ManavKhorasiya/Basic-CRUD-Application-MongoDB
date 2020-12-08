@@ -1,9 +1,6 @@
 # MongoDB CRUD Application 
 
-For Docker try :  
- - [x] https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
- - [x] https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3
-
+NodeJS + MongoDB App handling all CRUD operations with Docker Deployment
 
 ## Notes 
 
@@ -59,13 +56,20 @@ Run `npm start`
 * MongoDB Connection URL : `mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false` 
 
 ### With Docker
+Pull mongo image by running : `docker pull mongo:latest`
+
 While running 1st time, docker containers have to be built. 
+
 So run `docker-compose up --build`
 * Connection base URL : `http://localhost:5000/api/`
 * MongoDB Connection URL : `mongodb://localhost:27019/?readPreference=primary&appname=MongoDB%20Compass&ssl=false`
+
 After building containers, to run the program, use : 
 `docker-compose up`
 
 ## Useful Commands
 
 * Remove composed mongo container(container name : <b>database</b>) : `docker-compose rm database`
+
+## References
+https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3
