@@ -2,6 +2,29 @@
 
 NodeJS + MongoDB App handling all CRUD operations with Docker Deployment
 
+## Usage
+
+Clone the repository
+
+Run `npm install` to install all dependencies stored in `package.json`
+
+### Without Docker
+Run `npm start`
+* Connection base URL : `http://localhost:3000/api/`
+* MongoDB Connection URL : `mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false` 
+
+### With Docker
+Pull mongo image by running : `docker pull mongo:latest`
+
+While running 1st time, docker containers have to be built. 
+
+So run `docker-compose up --build`
+* Connection base URL : `http://localhost:5000/api/`
+* MongoDB Connection URL : `mongodb://localhost:27019/?readPreference=primary&appname=MongoDB%20Compass&ssl=false`
+
+After building containers, to run the program, use : 
+`docker-compose up`
+
 ## Notes 
 
 ### Without Docker 
@@ -43,29 +66,6 @@ Connection String : `mongodb://localhost:27019/?readPreference=primary&appname=M
 
 Here, `27019` is the port on which <b>Mongo container</b> is running
 
-
-## Usage
-
-Clone the repository
-
-Run `npm install` to install all dependencies stored in `package.json`
-
-### Without Docker
-Run `npm start`
-* Connection base URL : `http://localhost:3000/api/`
-* MongoDB Connection URL : `mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false` 
-
-### With Docker
-Pull mongo image by running : `docker pull mongo:latest`
-
-While running 1st time, docker containers have to be built. 
-
-So run `docker-compose up --build`
-* Connection base URL : `http://localhost:5000/api/`
-* MongoDB Connection URL : `mongodb://localhost:27019/?readPreference=primary&appname=MongoDB%20Compass&ssl=false`
-
-After building containers, to run the program, use : 
-`docker-compose up`
 
 ## Useful Commands
 
